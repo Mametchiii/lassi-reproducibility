@@ -1,7 +1,8 @@
-# Latent Space Smoothing for Individually Fair Representations <a href="https://www.sri.inf.ethz.ch/"><img width="100" alt="portfolio_view" align="right" src="http://safeai.ethz.ch/img/sri-logo.svg"></a>
+# Reproduce paper - Latent Space Smoothing for Individually Fair Representations 
 
 ![Overview](overview.png)
 
+The code is available at [lassi-reproducibility](https://github.com/Mametchiii/lassi-reproducibility) 
 LASSI is a state-of-the-art representation learning method for enforcing and certifying the individual fairness of
 high-dimensional data, such as images. LASSI defines the set of similar individuals in the latent space of
 generative Glow models, which allows us to capture and modify complex continuous semantic attributes

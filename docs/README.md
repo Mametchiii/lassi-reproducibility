@@ -8,12 +8,10 @@ Deep learning models are increasingly being used to make decisions in critical d
 
 In order to ensure that similar individuals are treated similarly in their paper _Latent Space Smoothing for Individually Fair Representations_, Peychev et al. introduce a novel representation learning method called LASSI, that is able to certify individual fairness on high-dimensional data. This is done by using recent advances in generative modelling and the scalable certification of deep models.
 
-**In this work**, we aim to study the reproducibility of the work executed by the Peychev et al., and we attempt to verify the three main claims in their paper: 
-1. Claim 1: LASSI significantly increases certified individual fairness compared to the naive baseline model, while keeping prediction accuracies high.
-2. Claim 2: LASSI can handle various sensitive attributes and attribute vectors and increase certified individual fairness compared to the naive baseline model.
-3. Claim 3: LASSI representations transfer to unseen tasks and can still achieve high certified individual fairness when the downstream tasks are not known.
+**In this work**, we aim to study the reproducibility of the work executed by the Peychev et al., and we attempt to verify the three main claims in their paper: (1) LASSI increases certified individual fairness, while keeping prediction accuracies high, (2) LASSI can handle various sensitive attributes and attribute vectors and (3) LASSI representations can achieve high certified individual fairness even when downstream tasks are not known. In addition, we aim to extend their
+research by performing additional experiments to validate the robustness of their claims and investigate the encountered outliers.
 
-**On this project page** we present a short summary of the project, results and conclusions. In the [GitHub repository](https://github.com/Mametchiii/lassi-reproducibility) the code can be found, alongside a detailed description on how to reproduce the original and additional experiments.
+**On this project page**, we present a short summary of the project, results and conclusions. In the [GitHub repository](https://github.com/Mametchiii/lassi-reproducibility) the code can be found, alongside a detailed description on how to reproduce the original and additional experiments.
 
 ## Text Tsatsral put in
 

@@ -8,10 +8,10 @@ Deep learning models are increasingly being used to make decisions in critical d
 
 In order to ensure that similar individuals are treated similarly in their paper _Latent Space Smoothing for Individually Fair Representations_, Peychev et al. introduce a novel representation learning method called LASSI, that is able to certify individual fairness on high-dimensional data. This is done by using recent advances in generative modelling and the scalable certification of deep models.
 
-**_In this work_**, we aim to study the reproducibility of the work executed by the Peychev et al., and we attempt to verify the three main claims in their paper: 
-1. LASSI significantly increases certified individual fairness compared to the naive baseline model, while keeping prediction accuracies high.
-2. LASSI can handle various sensitive attributes and attribute vectors and increase certified individual fairness compared to the naive baseline model.
-3. LASSI representations transfer to unseen tasks and can still achieve high certified individual fairness when the downstream tasks are not known.
+**In this work**, we aim to study the reproducibility of the work executed by the Peychev et al., and we attempt to verify the three main claims in their paper: 
+1. Claim 1: _LASSI significantly increases certified individual fairness compared to the naive baseline model, while keeping prediction accuracies high._
+2. Claim 2: _LASSI can handle various sensitive attributes and attribute vectors and increase certified individual fairness compared to the naive baseline model._
+3. Claim 3: _LASSI representations transfer to unseen tasks and can still achieve high certified individual fairness when the downstream tasks are not known._
 
 **_On this page_** we present a short summary of the project, results and conclusions. In the GitHub repository a detailed description on how to reproduce the additional experiments executed by us alongside the written code can be found. 
 

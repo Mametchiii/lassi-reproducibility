@@ -11,7 +11,7 @@ In order to ensure that similar individuals are treated similarly in their paper
 **In this work**, we aim to study the reproducibility of the work executed by the Peychev et al., and we attempt to verify the three main claims in their paper: (1) LASSI increases certified individual fairness, while keeping prediction accuracies high, (2) LASSI can handle various sensitive attributes and attribute vectors and (3) LASSI representations can achieve high certified individual fairness even when downstream tasks are not known. In addition, we aim to extend their
 research by performing additional experiments to validate the robustness of their claims and investigate the encountered outliers.
 
-**On this project page**, we present a short summary of the project, results and conclusions. In the [GitHub repository](https://github.com/Mametchiii/lassi-reproducibility) the code can be found, alongside a detailed description on how to reproduce the original and additional experiments.
+**On this project page** we present a short summary of the project, including a short theoretical background, the results and the discussion. In the [GitHub repository](https://github.com/Mametchiii/lassi-reproducibility) the code can be found, alongside a detailed description on how to reproduce the original and additional experiments.
 
 ## Text Tsatsral put in
 

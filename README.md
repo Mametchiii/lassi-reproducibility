@@ -1,19 +1,7 @@
 # Reproduce paper - Latent Space Smoothing for Individually Fair Representations 
 
-![Overview](overview.png)
-
-The code is available at [lassi-reproducibility](https://github.com/Mametchiii/lassi-reproducibility) 
-
-LASSI is a state-of-the-art representation learning method for enforcing and certifying the individual fairness of
-high-dimensional data, such as images. LASSI defines the set of similar individuals in the latent space of
-generative Glow models, which allows us to capture and modify complex continuous semantic attributes
-(e.g., hair color).  Next, LASSI employs adversarial learning and center smoothing to learn representations that
-provably map similar individuals close to each other. Finally, it uses randomized smoothing to verify local
-robustness of downstream applications, resulting in an individual fairness certificate of the end-to-end model.
-
-This repository contains the official implementation of our [ECCV 2022](https://www.sri.inf.ethz.ch/publications/peychev2022latent) paper,
-developed at the [SRI Lab, Department of Computer Science, ETH Zurich](https://www.sri.inf.ethz.ch)
-as a part of the [Safe AI project](http://safeai.ethz.ch).
+This repository contains the (partial) implementation of the [ECCV 2022](https://www.sri.inf.ethz.ch/publications/peychev2022latent) paper,
+The original research is developed at the [SRI Lab, Department of Computer Science, ETH Zurich](https://www.sri.inf.ethz.ch) as a part of the [Safe AI project](http://safeai.ethz.ch). The majority of the code is imported from the official [Github](https://github.com/eth-sri/lassi) of this paper. The alternations by the authors of this reproducibility research are mainly done for generating the visualizations, testing the fairness score of the certain faces' prediction. The main body of the code is not editted, only small changed are done in how the class objects are defined etc. in various files to enable the above-mentioned calculations. To reproduce the results in our reproducibility report, please follow the instructions below. To reproduce the original paper, please go to the official [Github](https://github.com/eth-sri/lassi) page of the original paper.
 
 ## Environment Setup Instructions
 
@@ -63,9 +51,8 @@ Download the pretrained generative Glow models
 We run experiments on the following datasets:
 * [CelebA](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) (download the images in the `img_align_celeba.zip` archive)
 * [FairFace](https://github.com/joojs/fairface) (use Padding=0.25)
-* [3dshapes](https://github.com/deepmind/3d-shapes)
 
-We provide our custom random data splits of FairFace and 3dshapes, if you would like to use them:
+We used the custom random data splits of FairFace defined by the authors of the original paper, if you would like to use them:
 ```bash
 (lassi) lassi $ wget http://files.sri.inf.ethz.ch/lassi/custom_splits.tar.gz
 (lassi) lassi $ sha256sum custom_splits.tar.gz
@@ -94,12 +81,7 @@ lassi
 │   │   ├── custom_train_split.txt (optional)
 │   │   ├── custom_valid_split.txt (optional)
 │   │   ├── fairface_label_train.csv
-│   │   └── fairface_label_val.csv
-│   ├── 3dshapes
-│   │   ├── 3dshapes.h5
-│   │   ├── custom_test_split.npy
-│   │   ├── custom_train_split.npy
-└───└───└── custom_valid_split.npy
+└───└───└── fairface_label_val.csv
 ```
 
 In order to speed up the training, we cache the image representations in the latent space of the generative models.
@@ -107,47 +89,36 @@ We save the cached representations in [LMDB](https://lmdb.readthedocs.io/en/rele
 ```bash
 (lassi) lassi $ cd src/dataset
 (lassi) lassi/src/dataset $ ./convert_to_lmdb.sh glow_celeba_64
-(lassi) lassi/src/dataset $ ./convert_to_lmdb.sh glow_celeba_128
 (lassi) lassi/src/dataset $ ./convert_to_lmdb.sh glow_fairface
-(lassi) lassi/src/dataset $ ./convert_to_lmdb.sh glow_3dshapes
 ```
 
 This will create new versions of the datasets in the `data/` folder:\
-`glow_celeba_64_latent_lmdb`,`glow_celeba_128_latent_lmdb`,`glow_fairface_latent_lmdb`, and\
-`glow_3dshapes_latent_lmdb`,`glow_3dshapes_latent_lmdb_correlated_orientation`\
-respectively.
+`glow_celeba_64_latent_lmdb`,`glow_fairface_latent_lmdb`.
 
 ## Computing the Attribute Vectors
 
-You can recompute the attribute vectors by running the following commands.
+You can recompute the attribute vectors we used for our experiments by running the following commands.
 Note that due to hardware or library version differences (e.g., different drivers), exact numerical replication
 might not be possible.
 ```bash
 (lassi) lassi/src/dataset $ ./compute_attr_vectors_glow.sh celeba64
 (lassi) lassi/src/dataset $ ./compute_attr_vectors_glow.sh celeba64 --computation_method perpendicular --epochs 3 --lr 0.001 --normalize_vectors True
 (lassi) lassi/src/dataset $ ./compute_attr_vectors_glow.sh celeba64 --computation_method ramaswamy --epochs 3 --lr 0.001 --target Smiling
-(lassi) lassi/src/dataset $ ./compute_attr_vectors_glow.sh celeba64_discover
-(lassi) lassi/src/dataset $ ./compute_attr_vectors_glow.sh celeba128
 (lassi) lassi/src/dataset $ ./compute_attr_vectors_glow.sh fairface
-(lassi) lassi/src/dataset $ ./compute_attr_vectors_glow.sh 3dshapes
 ```
 
 ## Reproducing the Experiments
 
 To reproduce the experiments, please run the following scripts.
-By default, they run the experiments for 5 random seeds, but you can control this by setting
+By default, they run the experiments for 2 random seeds, but you can control this by setting
 `--run_only_one_seed True`.
 ```bash
 (lassi) lassi $ cd src/pipelines
 (lassi) lassi/src/pipelines $ ./celeba_64_avg_diff.sh > celeba_64_avg_diff.out
 (lassi) lassi/src/pipelines $ ./celeba_64_perp.sh > celeba_64_perp.out
 (lassi) lassi/src/pipelines $ ./celeba_64_ram.sh > celeba_64_ram.out
-(lassi) lassi/src/pipelines $ ./celeba_64_discover.sh > celeba_64_discover.out
-(lassi) lassi/src/pipelines $ ./celeba_128_avg_diff.sh > celeba_128_avg_diff.out
 (lassi) lassi/src/pipelines $ ./celeba_64_transfer.sh > celeba_64_transfer.out
 (lassi) lassi/src/pipelines $ ./fairface_experiments.sh > fairface_experiments.out
-(lassi) lassi/src/pipelines $ ./shapes3d_experiments.sh orientation_naive
-(lassi) lassi/src/pipelines $ ./shapes3d_experiments.sh orientation_lassi
 ```
 
 To aggregate the results in a given `.out` file, you can use the `analyse_results.py` script:
@@ -155,7 +126,7 @@ To aggregate the results in a given `.out` file, you can use the `analyse_result
 (lassi) lassi/src/pipelines $ python analyse_results.py --out_file [OUT_FILE]
 ```
 
-## Citing This Work
+## Citing the original paper
 
 ```
 @inproceedings{peychev2022latent,
@@ -168,7 +139,7 @@ To aggregate the results in a given `.out` file, you can use the `analyse_result
 }
 ```
 
-## Contributors
+## Contributors of the original paper
 
 * [Momchil Peychev](https://www.sri.inf.ethz.ch/people/momchil) (momchil.peychev@inf.ethz.ch)
 * Anian Ruoss (anianr@deepmind.com)

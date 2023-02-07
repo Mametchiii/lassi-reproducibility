@@ -107,3 +107,57 @@ h2 {
 .vspace-top {
     margin-top: 30px;
 }
+
+/* Added by me */
+
+.column-75 {
+  flex: 75%
+}
+
+.column-25 {
+  flex: 25%
+}
+
+.column-12 {
+  flex: 20%
+}
+
+.column-33 {
+  flex: 33.33%
+}
+
+.caption-own {
+  width:100%; 
+  font-family: 'Courier New', Courier, monospace;
+  font-size:16px;
+  text-align:center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, auto);
+  margin: 20px;
+}
+
+.grid-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+}
+
+.grid-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.grid-container-2 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, auto);
+  margin: 20px;
+}

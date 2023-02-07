@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
-          content="Learning Signal-Agnostic Manifolds of Neural Fields">
+          content="Reproducibility Study of 'Latent Space Smoothing for Individually Fair Representations'">
     <meta name="author"
-          content="Yilun Du, Katherine M. Collins, Joshua B. Tenenbaum, Vincent Sitzmann">
+          content="Tsatsral Mendsuren, Denny Smit, Boaz Beukers, Didier Merk">
 
-    <title>Learning Signal-Agnostic Manifolds of Neural Fields</title>
+    <title>Reproducibility Study of 'Latent Space Smoothing for Individually Fair Representations'</title>
     <!-- Bootstrap core CSS -->
     <!--link href="bootstrap.min.css" rel="stylesheet"-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -23,1064 +23,405 @@
 <body>
 <div class="jumbotron jumbotron-fluid">
     <div class="container"></div>
-    <h2>Learning Signal-Agnostic Manifolds of Neural Fields</h2>
-    <h3>NeurIPS 2021</h3>
+    <h2>Reproducibility Study</h2>
+    <h3><em>'Latent Space Smoothing for Individually Fair Representations'</em></h3>
+    <h5>MLRC 2022</h5>
     <hr>
     <p class="authors">
-        <a href="https://yilundu.github.io">Yilun Du</a>,
-        <a href="">Katherine M. Collins</a>,
-        <a href="https://mitibmwatsonailab.mit.edu/people/joshua-tenenbaum/"> Joshua B. Tenenbaum</a>,
-        <a href="https://vsitzmann.github.io/">Vincent Sitzmann</a>
+        <em>Authors remain anonymous until evaluation is published</em>
     </p>
     <div class="btn-group" role="group" aria-label="Top menu">
-        <a class="btn btn-primary" href="https://arxiv.org/abs/2111.06387">Paper</a>
-        <a class="btn btn-primary" href="https://github.com/yilundu/gem/">Code</a>
+        <a class="btn btn-primary" href="https://openreview.net/forum?id=pYBiG82OPLW">Paper</a>
+        <a class="btn btn-primary" href="https://github.com/Mametchiii/lassi-reproducibility">Code</a>
     </div>
 </div>
 
 <div class="container">
+    <!-- First big image -->
     <div class="section">
-        <div class="vcontainer">
-            <iframe class='video' src="https://www.youtube.com/embed/mpFpN7I9A0g" frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-        </div>
-        <hr>
-        <p>
-            Deep neural networks have been used widely to learn the latent structure of datasets, across modalities such as images, shapes, and audio signals.
-
-            However, existing models are generally modality-dependent, requiring custom architectures and objectives to process different classes of signals.
-
-            We leverage neural fields to capture the underlying structure in image, shape, audio and cross-modal audiovisual domains in a modality-independent manner.
-
-            We cast our task as one of learning a manifold, where we aim to infer a low-dimensional, locally linear subspace in which our data resides.
-
-            By enforcing coverage of the manifold, local linearity, and local isometry, our model --- dubbed GEM --- learns to capture the underlying structure of datasets across modalities.
-
-            We can then travel along linear regions of our manifold to obtain perceptually consistent interpolations between samples, and can further use GEM to recover points on our manifold and glean not only diverse completions of input images, but cross-modal hallucinations of audio or image signals.
-
-            Finally, we show that by walking across the underlying manifold of GEM, we may generate new samples in our signal domains.
-        </p>
-
+        <img src="img/indian_fairface.png" style="width:90%" class="center"> 
     </div>
 
+    <!-- Fairness in AI text section -->
     <div class="section">
-        <h2>Audiovisual Manifold Traversal</h2>
-        <hr>
-        <div class="col justify-content-center text-center">
-            <video width="50%" controls playsinline="" loop="" preload="" >
-                <source src="img/audiovisual.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Setup</h2>
+        <h2>Fairness in AI</h2>
         <hr>
         <p>
-            The following results verify that GEM can capture seperate data distributions
-            in an modality independent manner. We utilize the same MLP and hyperenetwork architecture 
-            to represent manifold each seperate signal modality (utilizing two copies of the same MLP to encode a
-            cross-modal signal). <b>Function Distribution Networks (FDN)</b>[Dupont et al. 2021] and <b>StyleGAN2</b>[Karras et al. 2019] denote additional methods for capturing the underlying
-            signal modality, with architectural modifications to ensure proper signal generation.  GEM is the only
-            approach which can capture signals with high fidelity in an modality-independent manner. 
+            Deep learning models are increasingly being used to make decisions in critical 
+            
+            domains such as loan applications, crime risk-assessments and human resources. 
+            
+            The decisions made by these data‐driven models can have wide‐ranging impacts and 
+            
+            consequences on individuals and society as a whole. Recent studies, however, found 
+            
+            that these models and datasets can be biased, resulting in discrimination based on 
+            
+            factors such as race or gender.
+        </p>
+        <p> 
+            In order to ensure that similar individuals are treated similarly in their paper 
+            
+            <i>Latent Space Smoothing for Individually Fair Representations</i>, Peychev et al. 
+            
+            introduce a novel representation learning method called LASSI, that is able to 
+            
+            certify individual fairness on high-dimensional data. This is done by using recent 
+            
+            advances in generative modelling and the scalable certification of deep models.
+        </p>
+        <p>
+            <b>In this work</b>, we aim to study the reproducibility of the work executed by the 
+            
+            Peychev et al., and we attempt to verify the three main claims in their paper: 
+            
+            (1) LASSI increases certified individual fairness, while keeping prediction 
+            
+            accuracies high, (2) LASSI can handle various sensitive attributes and attribute 
+            
+            vectors and (3) LASSI representations can achieve high certified individual fairness 
+            
+            even when downstream tasks are not known. In addition, we aim to extend their 
+            
+            research by performing additional experiments to validate the robustness of their 
+            
+            claims and investigate the encountered outliers.
+        </p>
+        <p>
+            <b>On this project page</b> we present a brief summary of the project, including a 
+            
+            short theoretical background, the results and the discussion. In the 
+            
+            <a href="https://github.com/Mametchiii/lassi-reproducibility">GitHub repository</a>
+            
+            the code can be found, alongside a detailed description on how to reproduce the 
+            
+            original and additional experiments.
         </p>
     </div>
 
+    <!-- LASSI method section -->
     <div class="section">
-        <h2>Fitting Data Distributions</h2>
+        <h2>LASSI: Certified Individual Fairness</h2>
         <hr>
-        <p>
-            We show how GEM can fit audio and cross-modal audiovisual signals. Results of fitting images
-            and 3D shapes may be found in the main paper.
-        </p>
-
-        <div class="row justify-content-left">
-            <div class="col-sm-3">
-                <h5>Ground truth</h5>
-                <img src="img/audio_encode_0/gt.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_encode_0/gt.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <h5>FDN</h5>
-                <img src="img/audio_encode_0/fdn.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_encode_0/fdn.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <h5>StyleGAN2</h5>
-                <img src="img/audio_encode_0/stylegan2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_encode_0/stylegan2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <h5>GEM</h5>
-                <img src="img/audio_encode_0/gem.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_encode_0/gem.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-        <div class="row justify-content-left">
-            <div class="col-sm-3">
-                <img src="img/audio_encode_1/gt.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_encode_1/gt.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <img src="img/audio_encode_1/fdn.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_encode_1/fdn.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <img src="img/audio_encode_1/stylegan2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_encode_1/stylegan2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <img src="img/audio_encode_1/gem.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_encode_1/gem.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-        <div class="row justify-content-left">
-            <div class="col-sm-3">
-                <img src="img/audiovisual_encode_0/im_label.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_encode_0/audio_gt.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <img src="img/audiovisual_encode_0/fdn.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_encode_0/fdn.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <img src="img/audiovisual_encode_0/stylegan.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_encode_0/stylegan.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <img src="img/audiovisual_encode_0/im_pred.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_encode_0/audio_pred.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-        <div class="row justify-content-left">
-            <div class="col-sm-3">
-                <img src="img/audiovisual_encode_1/im_label.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_encode_1/audio_label.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <img src="img/audiovisual_encode_1/fdn.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_encode_1/fdn.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <img src="img/audiovisual_encode_1/stylegan.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_encode_1/stylegan.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <img src="img/audiovisual_encode_1/im_pred.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_encode_1/audio_pred.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Interpolations</h2>
-        <hr>
-        <p>
-            We next illustrate the underlying manifold that GEM captures across different signal modalities. Here, we visualize traversals on our manifold when interpolating between nearby training samples. 
-            We present traversals in the underlying image, shape, audiovisual modalities and then illustrate interpolations between separate
-            audio signals.
-        </p>
-        <div class="row align-items-center">
-            <div class="col justify-content-center text-center">
-                <h5>Image Traversal</h5>
-                <video width="50%" playsinline="" autoplay="" loop="" preload="" muted="">
-                    <source src="img/manifold.mp4" type="video/mp4">
+        <div class="row justify-content-center text-center">
+            <div class="column-12">
+                <video width="90%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/cropped_glow_vids/vid15.mp4" type="video/mp4">
                 </video>
+                <div class="caption-own">
+                    (a) Pale_Skin
+                </div>
             </div>
-            <div class="col justify-content-center text-center">
-                <h5>Shape Traversal</h5>
-                <video width="50%" playsinline="" autoplay="" loop="" preload="" muted="">
-                    <source src="img/shape_manifold.mp4" type="video/mp4">
+
+            <div class="column-12">
+                <video width="90%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/cropped_glow_vids/vid12.mp4" type="video/mp4">
                 </video>
+                <div class="caption-own">
+                    (b) Blond_Hair
+                </div>
             </div>
-            <div class="col justify-content-center text-center">
-                <h5>Audiovisual Traversal</h5>
-                <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
-                    <source src="img/audiovisual_manifold.mp4" type="video/mp4">
+
+            <div class="column-12">
+                <video width="90%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/cropped_glow_vids/vid8.mp4" type="video/mp4">
                 </video>
+                <div class="caption-own">
+                    (c) Beard
+                </div>
             </div>
-        </div>
-        <br>
-        <br>
-        <br>
-        <div class="row justify-content-left">
-            <div class="col-sm-3">
-                <h5>Sample 1</h5>
-                <img src="img/audio_0_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_0_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <h5>Interpolation 1</h5>
-                <img src="img/audio_0_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_0_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <h5>Interpolation 2</h5>
-                <img src="img/audio_0_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_0_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <h5>Sample 2</h5>
-                <img src="img/audio_0_3.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_0_3.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-        <div class="row justify-content-left">
-            <div class="col-sm-3">
-                <img src="img/audio_1_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_1_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <img src="img/audio_1_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_1_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <img src="img/audio_1_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_1_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-3">
-                <img src="img/audio_1_3.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_1_3.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-    </div>
 
-    <div class="section">
-        <h2>Cross-Modal Completion</h2>
-        <hr>
-        <p>
-            We further assess the audiovisual manifold learned by GEM. We present examples of  recovered samples
-            when projecting partial signal consisting of only a input image into the 
-            underlying manifold in GEM. In the first set of images, GEM
-            is able to generate seperate pitches of sounds dependent on the position of a bow on a cello.
-            In the second set of images, GEM is able to either generate or not generate sounds,
-            dependent if the person is blowing into the trombone.
-        </p>
-        <div class="row justify-content-left">
-            <div class="col-sm-2">
-                <h5>Image Input</h5>
-                <img src="img/audiovisual_0/im_label.png" style="width:100%">
+            <div class="column-12">
+                <video width="90%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/cropped_glow_vids/vid4.mp4" type="video/mp4">
+                </video>
+                <div class="caption-own">
+                    (d) Smiling
+                </div>
             </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <h5>Hallucination 1</h5>
-                <img src="img/audiovisual_0/audio_pred_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_0/audio_pred_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-2">
-                <h5>Hallucination 2</h5>
-                <img src="img/audiovisual_0/audio_pred_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_0/audio_pred_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-2">
-                <h5>Hallucination 3</h5>
-                <img src="img/audiovisual_0/audio_pred_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_0/audio_pred_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <h5>GT Audio</h5>
-                <img src="img/audiovisual_0/audio_label.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_0/audio_label.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-        <div class="row justify-content-left">
-            <div class="col-sm-2">
-                <img src="img/audiovisual_1/im_label.png" style="width:100%">
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/audiovisual_1/audio_pred_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_1/audio_pred_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-2">
-                <img src="img/audiovisual_1/audio_pred_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_1/audio_pred_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-2">
-                <img src="img/audiovisual_1/audio_pred_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_1/audio_pred_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/audiovisual_1/audio_label.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_1/audio_label.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-        <div class="row justify-content-left">
-            <div class="col-sm-2">
-                <img src="img/audiovisual_2/im_label.png" style="width:100%">
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/audiovisual_2/audio_pred_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_2/audio_pred_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-2">
-                <img src="img/audiovisual_2/audio_pred_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_2/audio_pred_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-2">
-                <img src="img/audiovisual_2/audio_pred_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_2/audio_pred_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/audiovisual_2/audio_label.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovisual_2/audio_label.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-        <div class="row justify-content-left">
-            <div class="col-sm-2">
-                <img src="img/trombone_0/im_label.png" style="width:100%">
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/trombone_0/audio_pred_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/trombone_0/audio_pred_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-2">
-                <img src="img/trombone_0/audio_pred_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/trombone_0/audio_pred_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-2">
-                <img src="img/trombone_0/audio_pred_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/trombone_0/audio_pred_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/trombone_0/audio_label.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/trombone_0/audio_label.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-        <div class="row justify-content-left">
-            <div class="col-sm-2">
-                <img src="img/trombone_1/im_label.png" style="width:100%">
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/trombone_1/audio_pred_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/trombone_1/audio_pred_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-2">
-                <img src="img/trombone_1/audio_pred_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/trombone_1/audio_pred_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-2">
-                <img src="img/trombone_1/audio_pred_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/trombone_1/audio_pred_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/trombone_1/audio_label.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/trombone_1/audio_label.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-    </div>
 
-
-    <div class="section">
-        <h2>Image Inpainting</h2>
-        <hr>
-        <p>
-            We further assess the ability of the manifold captured by GEM to restore images.
-        </p>
-        <div class="row justify-content-left">
-            <div class="col-sm-2">
-                <h5>Input</h5>
-                <img src="img/condition_0.png" style="width:100%">
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <h5>Completion 1</h5>
-                <img src="img/complete_0_0.png" style="width:100%">
-            </div>
-            <div class="col-sm-2">
-                <h5>Completion 2</h5>
-                <img src="img/complete_0_1.png" style="width:100%">
-            </div>
-            <div class="col-sm-2">
-                <h5>Completion 3</h5>
-                <img src="img/complete_0_2.png" style="width:100%">
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <h5>Ground Truth</h5>
-                <img src="img/gt_0.png" style="width:100%">
-            </div>
-        </div>
-        <div class="row justify-content-left">
-            <div class="col-sm-2">
-                <img src="img/condition_1.png" style="width:100%">
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/complete_1_0.png" style="width:100%">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/complete_1_1.png" style="width:100%">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/complete_1_2.png" style="width:100%">
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/gt_1.png" style="width:100%">
-            </div>
-        </div>
-        <div class="row justify-content-left">
-            <div class="col-sm-2">
-                <img src="img/condition_2.png" style="width:100%">
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/complete_2_0.png" style="width:100%">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/complete_2_1.png" style="width:100%">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/complete_2_2.png" style="width:100%">
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <img src="img/gt_2.png" style="width:100%">
-            </div>
-        </div>
-    </div>
-
-
-    <div class="section">
-        <h2>Generating Samples</h2>
-        <hr>
-        <p>
-            Finally, we provide visualization on the ability to generate new samples from GEM by sampling in
-            the underlying manifold. We present qualitative examples of generated audio clips and audiovisual samples utilizing GEM.
-            Samples of images and 3D shapes may be found in the main paper.
-        </p>
-        <div class="row justify-content-left">
-            <div class="col-sm-4">
-                <h5>FDN</h5>
-                <img src="img/audio_gen/fdn_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_gen/fdn_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <h5>StyleGAN2</h5>
-                <img src="img/audio_gen/stylegan_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_gen/stylegan_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <h5>GEM</h5>
-                <img src="img/audio_gen/gem_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_gen/gem_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-
-        <div class="row justify-content-left">
-            <div class="col-sm-4">
-                <img src="img/audio_gen/fdn_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_gen/fdn_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <img src="img/audio_gen/stylegan_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_gen/stylegan_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <img src="img/audio_gen/gem_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_gen/gem_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-
-        <div class="row justify-content-left">
-            <div class="col-sm-4">
-                <img src="img/audio_gen/fdn_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_gen/fdn_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <img src="img/audio_gen/stylegan_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_gen/stylegan_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <img src="img/audio_gen/gem_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_gen/gem_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-
-        <div class="row justify-content-left">
-            <div class="col-sm-4">
-                <img src="img/audio_gen/fdn_3.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_gen/fdn_3.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <img src="img/audio_gen/stylegan_3.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_gen/stylegan_3.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <img src="img/audio_gen/gem_3.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audio_gen/gem_3.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-
-
-        <div class="row justify-content-left">
-            <div class="col-sm-4">
-                <img src="img/audiovis_gen/fdn_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovis_gen/fdn_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <img src="img/audiovis_gen/stylegan_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovis_gen/stylegan_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <img src="img/audiovis_gen/gem_0.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovis_gen/gem_0.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-
-        <div class="row justify-content-left">
-            <div class="col-sm-4">
-                <img src="img/audiovis_gen/fdn_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovis_gen/fdn_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <img src="img/audiovis_gen/stylegan_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovis_gen/stylegan_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <img src="img/audiovis_gen/gem_1.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovis_gen/gem_1.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-
-
-        <div class="row justify-content-left">
-            <div class="col-sm-4">
-                <img src="img/audiovis_gen/fdn_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovis_gen/fdn_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <img src="img/audiovis_gen/stylegan_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovis_gen/stylegan_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-            <div class="col-sm-4">
-                <img src="img/audiovis_gen/gem_2.png" style="width:100%">
-                <audio
-                        controls
-                        src="img/audiovis_gen/gem_2.wav"
-                        class="media-left"
-                        style="width:100%">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </div>
-        </div>
-
-    </div>
-
-
-        <div class="section">
-            <h2>Paper</h2>
-            <hr>
-            <div>
-                <div class="list-group">
-                    <a href=""
-                       class="list-group-item">
-                        <img src="img/paper_thumbnail.png"
-                             style="width:100%; margin-right:-20px; margin-top:-10px;">
-                    </a>
+            <div class="column-12">
+                <video width="90%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/cropped_glow_vids/vid11.mp4" type="video/mp4">
+                </video>
+                <div class="caption-own">
+                    (d) Age
                 </div>
             </div>
         </div>
+        <br>
+        <p align="justify">
+            <b>Generative modelling (GLOW)</b> - In order to ensure fairness, similar individuals 
+            
+            that only differ in one or more sensitive attributes such as race or age, need 
+            
+            to be treated similar by the LASSI model. To do this, we want to ignore these 
+            
+            sensitive attributes in the classification process. This is achieved by using 
+            
+            the generative model GLOW, which allows us to alter the input data in the
+            
+            latent space along a specific attribute vector, as shown in the figures above. When
+            
+            the different variations of these faces are treated similarly in the classification
+            
+            process, we can state that we have achieved certified individual fairness.
+        </p>
 
+        <img src="img/overview.png" style="width:90%" class="center">
+        <br>
+        <p align="justify">
+            <b>LASSI</b> - By treating all the variations of an image generated by the GLOW model in the same 
+            manner, the LASSI model learns a fair representation of a specific task. It is ensured 
+            that the model learns to discriminate only based on features other than the sensitive 
+            attribute, which the GLOW model attempts to alter as little as possible. This 
+            adversarial training is performed by uniformly selecting points on the sensitive 
+            attribute vector with a maximum perturbation level, and train the model based on these 
+            images, to ensure fair treatment.
+        </p>
+        <p algin="justify">
+            The training process involves balancing fairness, accuracy, and transferability to 
+            unknown tasks by finding the optimal value of different loss functions. Once the 
+            fair representation of the data is learned, it can be used to train a classifier 
+            for any downstream task. The method is compared to a fairness‐unaware (naive) 
+            baseline model for evaluation. For a more detailed explanation description, we would like to
+            redirect you to our <a href="https://openreview.net/forum?id=pYBiG82OPLW">paper</a>.
+
+        </p>
+    </div>
+
+        <!-- Results Layout -->
         <div class="section">
-            <h2>Bibtex</h2>
+            <h2>Results - <em>Reproduced experiments</em></h2>
             <hr>
-            <div class="bibtexsection">
-                @inproceedings{du2021gem,
-                  title={Learning Signal-Agnostic Manifolds of Neural Fields},
-                  author={Du, Yilun and Collins, M. Katherine and Tenenbaum, B. Joshua
-                  and Sitzmann, Vincent},
-                  booktitle={Advances in Neural Information Processing Systems},
-                  year={2021}
-                }
+            <p algin="justify">
+                In the following sections we summarize the main results of the reproducibility studies. In our dedicated 
+                <a href="https://github.com/Mametchiii/lassi-reproducibility">GitHub repository</a> 
+                a detailed description is given of how the original experiments are reproduced and 
+                how our own additional experiments can be executed.
+            </p>
+
+            <!-- <div class="row justify-content-center text-center"> -->
+                <div class="grid-container">
+                    <div class="grid-item">
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid15.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (a) Pale_Skin
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid12.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (b) Young
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid8.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (c) Blond_Hair
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <div class="caption-own" style="font-size:23px;">
+                            Smiling
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                        <div class="caption-own" style="font-size:23px;">
+                            Earrings
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                </div>
+        </div>
+
+        <!-- Results Layout -->
+        <div class="section">
+            <h2>Results - <em>Additional experiments</em></h2>
+            <hr>
+            
+            <!-- <div class="row justify-content-center text-center"> -->
+                <div class="grid-container-2">
+                    <div class="grid-item">
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid15.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (a) Bald
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid12.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (b) Big_Lips
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid8.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (c) Chubby
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid8.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (c) Narrow_Eyes
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <div class="caption-own" style="font-size:23px;">
+                            Smiling
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                        <img src="img/samplebarchart.png">
+                    </div>
+
+                    <div class="grid-item">
+                        <div class="caption-own" style="font-size:23px;">
+                            Hat
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                        <img src="img/samplebarchart.png">
+                    </div>
+
+                    <div class="grid-item">
+                        <div class="caption-own" style="font-size:23px;">
+                            Attractive
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                        <img src="img/samplebarchart.png">
+                      </div>
+
+                    <div class="grid-item">
+                        <div class="caption-own" style="font-size:23px;">
+                            Necklace
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                        <img src="img/samplebarchart.png">
+                      </div>
+
+                </div>
+        </div>          
+
+    <!-- Conclusion section -->
+    <div class="section">
+        <h2>Conclusion</h2>
+        <hr>
+        <p>
+            Despite compromises made due to resource limitations, <b>we find very similar results</b> 
+            in all reproduced and additional experiments conducted. We find that: (1) LASSI increases certified 
+            fairness on (2) various sensitive attributes and attribute vectors, while keeping prediction 
+            accuracies high. The results also indicate that (3) LASSI achieves high certified 
+            individual fairness even when the downstream tasks are not known. In addition, the additional
+            experiments conducted demonstrate that the claims are <b>robust</b>.
+        </p>
+    </div>
+
+    <!-- Paper preview -->
+    <div class="section">
+        <h2>Paper</h2>
+        <hr>
+        <div>
+            <div class="list-group">
+                <a href="https://openreview.net/forum?id=pYBiG82OPLW"
+                   class="list-group-item">
+                    <img src="img/paperpreview.png"
+                         style="width:100%; margin-right:-20px; margin-top:5px;">
+                </a>
             </div>
         </div>
+    </div>
 
         <hr>
 
         <footer>
-            <p>Send feedback and questions to <a href="https://yilundu.github.io">Yilun Du</a></p>
+            <p>This template was based on the page by <a href="https://yilundu.github.io/gem/">Yilun Du</a> | last update: 7-2-2023</p>
         </footer>
     </div>
-
-
     
-
 </div>
 
 
@@ -1093,6 +434,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+      
 
 </body>
 </html>

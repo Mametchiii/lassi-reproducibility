@@ -71,6 +71,22 @@ classifier)
   done
   ;;
 
+visualization)
+  python visualization_evaluation.py \
+    --train_encoder_epochs 5 --train_encoder_batch_size 500 --lr 0.001 \
+    --train_classifier_epochs 1 --train_classifier_batch_size 128 \
+    --save_artefacts True --save_period 1  \
+    --dataset glow_fairface_visualizations_latent_lmdb --input_representation latent --image_size 64 --n_bits 5 \
+    --gen_model_type Glow --gen_model_name glow_fairface \
+    --glow_n_flow 32 --glow_n_block 4 \
+    --encoder_type linear --encoder_hidden_layers "2048,1024" \
+    --perturb_epsilon 0.5 \
+    --cls_alpha 0.001 --cls_n 100000 --cls_n0 2000 \
+    --enc_alpha 0.01 --enc_n 10000 --enc_n0 10000 \
+    --sampling_batch_size 10000 --certification_batch_size 32 --skip 32 --split test \
+    "$@"
+  ;;
+
 e2e)
   python end_to_end_pipeline.py \
     --train_encoder_epochs 5 --train_encoder_batch_size 500 --lr 0.001 \

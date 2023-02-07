@@ -91,10 +91,12 @@ class FairEncoderExperiment(AbstractTrainer):
         if params.fair_encoder_name is not None:
             return params.fair_encoder_name
         target_attributes = '_'.join(params.classify_attributes)
+        if 'visualizations' in params.dataset:
+            dataset_name = params.dataset.replace("_visualizations", "")
         experiment_name = 'fair_encoder/gen_model={}_{}_dset_{}/'.format(
             params.gen_model_name,
             'recon' if params.use_gen_model_reconstructions else 'latent',
-            params.dataset
+            dataset_name
         )
         if params.cls_loss_weight > 0.0:
             experiment_name += f'{target_attributes}_'
@@ -366,11 +368,13 @@ def main(params: argparse.Namespace):
     data_manager = DataManager.get_manager(params)
     fair_encoder_experiment = FairEncoderExperiment(params, data_manager)
 
+    
     if not (
         (fair_encoder_experiment.saved_models_dir / 'lassi_encoder_best.pth').is_file() and
         (fair_encoder_experiment.saved_models_dir / 'classifier_best.pth').is_file()
         ):
         # Training:
+        print(f'########{fair_encoder_experiment.saved_models_dir}')
         logger.debug('Start training.')
         fair_encoder_experiment.train()
         logger.debug('Training completed.')

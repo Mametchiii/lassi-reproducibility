@@ -5,7 +5,7 @@ import json
 import numpy as np
 
 
-SEEDS = [42, 0, 10, 20, 30]
+SEEDS = [42, 0]
 
 
 def get_data_next_experiment(lines, seed):

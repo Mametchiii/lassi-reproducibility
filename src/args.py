@@ -35,10 +35,14 @@ def dataset() -> argparse.ArgumentParser:
                             # CelebA:
                             'celeba',
                             'glow_celeba_64_latent_lmdb',
+                            'glow_celeba_64_visualizations_latent_lmdb',
                             'glow_celeba_128_latent_lmdb',
+                            'visualizations_celeba',
                             # FairFace:
                             'fairface',
                             'glow_fairface_latent_lmdb',
+                            'glow_fairface_visualizations_latent_lmdb',
+                            'visualizations_fairface',
                             # 3dshapes:
                             '3dshapes',
                             'glow_3dshapes_latent_lmdb',

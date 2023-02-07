@@ -44,6 +44,7 @@ def show(img):
         `torchvision.utils.make_grid(...)`.
     """
     npimg = img.numpy()
+    plt.axis('off')
     plt.imshow(np.transpose(npimg, (1, 2, 0)), interpolation='nearest')
     plt.show()  # Blocking call.
 
@@ -63,7 +64,7 @@ def get_root_path() -> Path:
 
 def get_path_to(dir_name: str) -> Path:
     """Returns the path to fair-vision/data/."""
-    assert dir_name in ['data', 'logs', 'saved_models', 'saved_images']
+    assert dir_name in ['data', 'logs', 'saved_models', 'saved_images', 'data/visualizations_celeba', 'data/visualizations_fairface']
     return get_or_create_path(get_root_path() / dir_name)
 
 

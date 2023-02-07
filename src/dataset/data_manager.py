@@ -5,7 +5,8 @@ from typing import Optional
 
 import torch
 from torch.utils.data import DataLoader
-from torchvision.datasets import CelebA
+from dataset.celeba_dataset import CelebA
+#from torchvision.datasets import CelebA
 from torchvision import transforms
 
 from dataset.fairface_dataset import FairFaceDataset
@@ -54,13 +55,13 @@ class DataManager(ABC):
 
     @staticmethod
     def get_manager(params: argparse.Namespace) -> 'DataManager':
-        if params.dataset == 'celeba':
+        if params.dataset in ['celeba', 'visualizations_celeba']:
             return CelebAOriginalDataManager(params)
-        elif params.dataset in ['glow_celeba_64_latent_lmdb', 'glow_celeba_128_latent_lmdb']:
+        elif params.dataset in ['glow_celeba_64_latent_lmdb', 'glow_celeba_128_latent_lmdb', 'glow_celeba_64_visualizations_latent_lmdb']:
             return CelebALMDBDataManager(params)
-        elif params.dataset == 'fairface':
+        elif params.dataset in ['fairface', 'visualizations_fairface']:
             return FairFaceOriginalDataManager(params)
-        elif params.dataset == 'glow_fairface_latent_lmdb':
+        elif params.dataset in ['glow_fairface_latent_lmdb', 'glow_fairface_visualizations_latent_lmdb']:
             return FairFaceLMDBDataManager(params)
         elif params.dataset == '3dshapes':
             return Shapes3dOriginalDataManager(params)
@@ -73,7 +74,7 @@ class DataManager(ABC):
             raise ValueError(f'Dataset {params.dataset} not supported')
 
     def get_dataset(self, split: str):
-        assert split in ['train', 'valid', 'test']
+        assert split in ['train', 'valid', 'test', 'visualizations', 'all']
         if split not in self.dataset_cache:
             self.dataset_cache[split] = self._get_dataset(split)
         return self.dataset_cache[split]
@@ -83,7 +84,7 @@ class DataManager(ABC):
         raise NotImplementedError('`get_dataset` not implemented')
 
     def get_dataloader(self, split: str, shuffle: bool = True, batch_size: Optional[int] = None) -> DataLoader:
-        assert split in ['train', 'valid', 'test']
+        assert split in ['train', 'valid', 'test', 'visualizations', 'all']
         shuffle &= (split == 'train')
         if batch_size is None:
             batch_size = self.params.batch_size
@@ -93,7 +94,8 @@ class DataManager(ABC):
                 self.get_dataset(split),
                 batch_size=batch_size,
                 shuffle=shuffle,
-                num_workers=self.params.num_workers,
+                # num_workers=self.params.num_workers,
+                num_workers=0,
                 pin_memory=True
             )
         return self.loaders_cache[k]
@@ -130,12 +132,16 @@ class CelebAOriginalDataManager(CelebADataManager):
         super(CelebAOriginalDataManager, self).__init__(params)
 
     def _get_dataset(self, split: str):
+        if self.params.dataset == 'visualizations_celeba':
+            root = r'C:/Users/tsats/Documents/Year 1 Period 3/lassi/data/visualizations_celeba/'
+        else:
+            root = str(utils.get_path_to('data'))
         return CelebA(
-            root=str(utils.get_path_to('data')),
+            root=root,
             split=split,
             target_type='attr',
             transform=original_image_transforms(self.params.image_size, self.params.n_bits),
-            download=True
+            download=False
         )
 
 

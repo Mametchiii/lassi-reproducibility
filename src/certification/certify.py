@@ -173,6 +173,10 @@ class Certifier:
                 single_x = x[i]
                 ground_truth_label = y[i].item()
                 sample_eval_result = self.certify_sample(sample_index, single_x, ground_truth_label)
+                if sample_eval_result['certified_fair'] is False:
+                    print(f'low fairness file name: {sample_index+1}.jpg')
+                else:
+                    print(f'no need to worry, high fairness for: {sample_index+1}.jpg')
 
                 if self.perform_endpoints_analysis:
                     sample_eval_result = self.endpoints_analysis(single_x, sample_eval_result)

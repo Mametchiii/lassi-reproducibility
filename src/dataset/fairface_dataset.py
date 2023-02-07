@@ -26,7 +26,7 @@ class FairFaceDataset(data.Dataset):
 
     def __init__(self, root: str, split: str, transform):
         super(FairFaceDataset, self).__init__()
-        assert split in ['train', 'valid', 'test']
+        assert split in ['train', 'valid', 'test', 'visualizations']
 
         self.dset_dir = utils.get_path_to('data') / root
         assert self.dset_dir.is_dir(), f'FairFaceDataset @ {self.dset_dir} not found!'
@@ -36,7 +36,7 @@ class FairFaceDataset(data.Dataset):
             self.split_samples, _ = self.train_valid_split_samples()
         elif split == 'valid':
             _, self.split_samples = self.train_valid_split_samples()
-        elif split == 'test':
+        elif split in ['test', 'visualizations']:
             self.split_samples = self.load_csv(self.dset_dir / CSV_FILE_NAME_TEMPLATE.format('val'))
 
     def train_valid_split_samples(self):

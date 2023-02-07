@@ -55,8 +55,7 @@ if __name__ == '__main__':
 
     original_params = copy.deepcopy(params)
 
-    #for seed in [42, 0, 10, 20, 30]:
-    for seed in [42, 0]:
+    for seed in [42]:
         params = copy.deepcopy(original_params)
         params.seed = seed
         utils.set_random_seed(params.seed)

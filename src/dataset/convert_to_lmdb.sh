@@ -11,17 +11,19 @@ shift
 
 case "$gen_model_name" in
 glow_celeba_64)
-  python convert_to_lmdb.py \
-    --dataset celeba --image_size 64 --n_bits 5 \
-    --gen_model_type Glow --gen_model_name glow_celeba_64 \
-    --glow_n_flow 32 --glow_n_block 4
+  python convert_to_lmdb.py --dataset celeba --image_size 64 --n_bits 5 --gen_model_type Glow --gen_model_name glow_celeba_64 --glow_n_flow 32 --glow_n_block 4
   ;;
 
 glow_celeba_128)
-  python convert_to_lmdb.py \
-    --dataset celeba --image_size 128 --n_bits 5 \
-    --gen_model_type Glow --gen_model_name glow_celeba_128 \
-    --glow_n_flow 32 --glow_n_block 5
+  python convert_to_lmdb.py --dataset celeba --image_size 128 --n_bits 5 --gen_model_type Glow --gen_model_name glow_celeba_128 --glow_n_flow 32 --glow_n_block 5
+  ;;
+
+glow_visualizations_celeba_64)
+  python convert_to_lmdb_visualization.py --dataset visualizations_celeba --image_size 64 --n_bits 5 --gen_model_type Glow --gen_model_name glow_celeba_64 --glow_n_flow 32 --glow_n_block 4
+  ;;
+
+glow_visualizations_fairface)
+  python convert_to_lmdb_visualization.py --dataset visualizations_fairface --image_size 64 --n_bits 5 --gen_model_type Glow --gen_model_name glow_fairface --glow_n_flow 32 --glow_n_block 4 
   ;;
 
 glow_fairface)

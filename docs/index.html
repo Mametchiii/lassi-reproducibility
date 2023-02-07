@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="Reproducibility Study of 'Latent Space Smoothing for Individually Fair Representations'">
+    <meta name="author"
+          content="Tsatsral Mendsuren, Denny Smit, Boaz Beukers, Didier Merk">
+
+    <title>Reproducibility Study of 'Latent Space Smoothing for Individually Fair Representations'</title>
+    <!-- Bootstrap core CSS -->
+    <!--link href="bootstrap.min.css" rel="stylesheet"-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="offcanvas.css" rel="stylesheet">
+    <!--    <link rel="icon" href="img/favicon.gif" type="image/gif">-->
+</head>
+
+<body>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container"></div>
+    <h2>Reproducibility Study</h2>
+    <h3><em>'Latent Space Smoothing for Individually Fair Representations'</em></h3>
+    <h5>MLRC 2022</h5>
+    <hr>
+    <p class="authors">
+        <em>Authors remain anonymous until evaluation is published</em>
+    </p>
+    <div class="btn-group" role="group" aria-label="Top menu">
+        <a class="btn btn-primary" href="https://openreview.net/forum?id=pYBiG82OPLW">Paper</a>
+        <a class="btn btn-primary" href="https://github.com/Mametchiii/lassi-reproducibility">Code</a>
+    </div>
+</div>
+
+<div class="container">
+    <!-- First big image -->
+    <div class="section">
+        <img src="img/indian_fairface.png" style="width:90%" class="center"> 
+    </div>
+
+    <!-- Fairness in AI text section -->
+    <div class="section">
+        <h2>Fairness in AI</h2>
+        <hr>
+        <p>
+            Deep learning models are increasingly being used to make decisions in critical 
+            
+            domains such as loan applications, crime risk-assessments and human resources. 
+            
+            The decisions made by these data‐driven models can have wide‐ranging impacts and 
+            
+            consequences on individuals and society as a whole. Recent studies, however, found 
+            
+            that these models and datasets can be biased, resulting in discrimination based on 
+            
+            factors such as race or gender.
+        </p>
+        <p> 
+            In order to ensure that similar individuals are treated similarly in their paper 
+            
+            <i>Latent Space Smoothing for Individually Fair Representations</i>, Peychev et al. 
+            
+            introduce a novel representation learning method called LASSI, that is able to 
+            
+            certify individual fairness on high-dimensional data. This is done by using recent 
+            
+            advances in generative modelling and the scalable certification of deep models.
+        </p>
+        <p>
+            <b>In this work</b>, we aim to study the reproducibility of the work executed by the 
+            
+            Peychev et al., and we attempt to verify the three main claims in their paper: 
+            
+            (1) LASSI increases certified individual fairness, while keeping prediction 
+            
+            accuracies high, (2) LASSI can handle various sensitive attributes and attribute 
+            
+            vectors and (3) LASSI representations can achieve high certified individual fairness 
+            
+            even when downstream tasks are not known. In addition, we aim to extend their 
+            
+            research by performing additional experiments to validate the robustness of their 
+            
+            claims and investigate the encountered outliers.
+        </p>
+        <p>
+            <b>On this project page</b> we present a brief summary of the project, including a 
+            
+            short theoretical background, the results and the discussion. In the 
+            
+            <a href="https://github.com/Mametchiii/lassi-reproducibility">GitHub repository</a>
+            
+            the code can be found, alongside a detailed description on how to reproduce the 
+            
+            original and additional experiments.
+        </p>
+    </div>
+
+    <!-- LASSI method section -->
+    <div class="section">
+        <h2>LASSI: Certified Individual Fairness</h2>
+        <hr>
+        <div class="row justify-content-center text-center">
+            <div class="column-12">
+                <video width="90%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/cropped_glow_vids/vid15.mp4" type="video/mp4">
+                </video>
+                <div class="caption-own">
+                    (a) Pale_Skin
+                </div>
+            </div>
+
+            <div class="column-12">
+                <video width="90%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/cropped_glow_vids/vid12.mp4" type="video/mp4">
+                </video>
+                <div class="caption-own">
+                    (b) Blond_Hair
+                </div>
+            </div>
+
+            <div class="column-12">
+                <video width="90%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/cropped_glow_vids/vid8.mp4" type="video/mp4">
+                </video>
+                <div class="caption-own">
+                    (c) Beard
+                </div>
+            </div>
+
+            <div class="column-12">
+                <video width="90%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/cropped_glow_vids/vid4.mp4" type="video/mp4">
+                </video>
+                <div class="caption-own">
+                    (d) Smiling
+                </div>
+            </div>
+
+            <div class="column-12">
+                <video width="90%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/cropped_glow_vids/vid11.mp4" type="video/mp4">
+                </video>
+                <div class="caption-own">
+                    (d) Age
+                </div>
+            </div>
+        </div>
+        <br>
+        <p align="justify">
+            <b>Generative modelling (GLOW)</b> - In order to ensure fairness, similar individuals 
+            
+            that only differ in one or more sensitive attributes such as race or age, need 
+            
+            to be treated similar by the LASSI model. To do this, we want to ignore these 
+            
+            sensitive attributes in the classification process. This is achieved by using 
+            
+            the generative model GLOW, which allows us to alter the input data in the
+            
+            latent space along a specific attribute vector, as shown in the figures above. When
+            
+            the different variations of these faces are treated similarly in the classification
+            
+            process, we can state that we have achieved certified individual fairness.
+        </p>
+
+        <img src="img/overview.png" style="width:90%" class="center">
+        <br>
+        <p align="justify">
+            <b>LASSI</b> - By treating all the variations of an image generated by the GLOW model in the same 
+            manner, the LASSI model learns a fair representation of a specific task. It is ensured 
+            that the model learns to discriminate only based on features other than the sensitive 
+            attribute, which the GLOW model attempts to alter as little as possible. This 
+            adversarial training is performed by uniformly selecting points on the sensitive 
+            attribute vector with a maximum perturbation level, and train the model based on these 
+            images, to ensure fair treatment.
+        </p>
+        <p algin="justify">
+            The training process involves balancing fairness, accuracy, and transferability to 
+            unknown tasks by finding the optimal value of different loss functions. Once the 
+            fair representation of the data is learned, it can be used to train a classifier 
+            for any downstream task. The method is compared to a fairness‐unaware (naive) 
+            baseline model for evaluation. For a more detailed explanation description, we would like to
+            redirect you to our <a href="https://openreview.net/forum?id=pYBiG82OPLW">paper</a>.
+
+        </p>
+    </div>
+
+        <!-- Results Layout -->
+        <div class="section">
+            <h2>Results - <em>Reproduced experiments</em></h2>
+            <hr>
+            <p algin="justify">
+                In the following sections we summarize the main results of the reproducibility studies. In our dedicated 
+                <a href="https://github.com/Mametchiii/lassi-reproducibility">GitHub repository</a> 
+                a detailed description is given of how the original experiments are reproduced and 
+                how our own additional experiments can be executed.
+            </p>
+
+            <!-- <div class="row justify-content-center text-center"> -->
+                <div class="grid-container">
+                    <div class="grid-item">
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid15.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (a) Pale_Skin
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid12.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (b) Young
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid8.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (c) Blond_Hair
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <div class="caption-own" style="font-size:23px;">
+                            Smiling
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                        <div class="caption-own" style="font-size:23px;">
+                            Earrings
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                </div>
+        </div>
+
+        <!-- Results Layout -->
+        <div class="section">
+            <h2>Results - <em>Additional experiments</em></h2>
+            <hr>
+            
+            <!-- <div class="row justify-content-center text-center"> -->
+                <div class="grid-container-2">
+                    <div class="grid-item">
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid15.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (a) Bald
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid12.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (b) Big_Lips
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid8.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (c) Chubby
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <video width="80%" playsinline="" autoplay="" loop="" preload="" muted="">
+                            <source src="img/cropped_glow_vids/vid8.mp4" type="video/mp4">
+                        </video>
+                        <div class="caption-own", style="margin-top:10px; margin-bottom:-10px">
+                            (c) Narrow_Eyes
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <div class="caption-own" style="font-size:23px;">
+                            Smiling
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                        <img src="img/samplebarchart.png">
+                    </div>
+
+                    <div class="grid-item">
+                        <div class="caption-own" style="font-size:23px;">
+                            Hat
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                        <img src="img/samplebarchart.png">
+                    </div>
+
+                    <div class="grid-item">
+                        <div class="caption-own" style="font-size:23px;">
+                            Attractive
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                        <img src="img/samplebarchart.png">
+                      </div>
+
+                    <div class="grid-item">
+                        <div class="caption-own" style="font-size:23px;">
+                            Necklace
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                      <img src="img/samplebarchart.png">
+                    </div>
+                    <div class="grid-item">
+                        <img src="img/samplebarchart.png">
+                      </div>
+
+                </div>
+        </div>          
+
+    <!-- Conclusion section -->
+    <div class="section">
+        <h2>Conclusion</h2>
+        <hr>
+        <p>
+            Despite compromises made due to resource limitations, <b>we find very similar results</b> 
+            in all reproduced and additional experiments conducted. We find that: (1) LASSI increases certified 
+            fairness on (2) various sensitive attributes and attribute vectors, while keeping prediction 
+            accuracies high. The results also indicate that (3) LASSI achieves high certified 
+            individual fairness even when the downstream tasks are not known. In addition, the additional
+            experiments conducted demonstrate that the claims are <b>robust</b>.
+        </p>
+    </div>
+
+    <!-- Paper preview -->
+    <div class="section">
+        <h2>Paper</h2>
+        <hr>
+        <div>
+            <div class="list-group">
+                <a href="https://openreview.net/forum?id=pYBiG82OPLW"
+                   class="list-group-item">
+                    <img src="img/paperpreview.png"
+                         style="width:100%; margin-right:-20px; margin-top:5px;">
+                </a>
+            </div>
+        </div>
+    </div>
+
+        <hr>
+
+        <footer>
+            <p>This template was based on the page by <a href="https://yilundu.github.io/gem/">Yilun Du</a> | last update: 7-2-2023</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+      
+
+</body>
+</html>

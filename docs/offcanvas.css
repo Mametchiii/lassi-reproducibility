@@ -1,0 +1,163 @@
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+html,
+body {
+  overflow-x: hidden;  /*Prevent scroll on narrow devices */
+  padding-top: 30px;
+    text-align: justify;
+}
+footer {
+  padding: 10px 0;
+}
+.authors {
+  font-size: 20px;
+}
+/*.container {
+  max-width: 768px;
+}*/
+.container {
+  max-width: 1000px;
+}
+p {
+  font-size: 16px;
+  /*padding-bottom: 20px;*/
+}
+
+li {
+  font-size: 16px;
+}
+
+h2 {
+    text-align: center;
+    align: center;
+}
+
+.jumbotron{
+    text-align: center;
+}
+
+.btn {
+    font-size: 18px;
+}
+
+.btn-disabled {
+    /*background-color: #f4f4f4;*/
+}
+
+.jumbotron h2 {
+  font-size: 36px;
+}
+
+.section {
+  padding-top: 30px;
+}
+
+.center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vcontainer {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+}
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.gif {
+    padding:10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.caption {
+  width:75%; 
+  font-size:14px
+}
+
+.bibtexsection {
+  font-family: "Courier",monospace;
+  font-size:16px;
+  white-space:pre;
+  background-color: #f4f4f4;
+  text-align:left;
+}
+
+.canvas-row canvas {
+  max-width:100%;
+}
+
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
+
+.vspace-top {
+    margin-top: 30px;
+}
+
+/* Added by me */
+
+.column-75 {
+  flex: 75%
+}
+
+.column-25 {
+  flex: 25%
+}
+
+.column-12 {
+  flex: 20%
+}
+
+.column-33 {
+  flex: 33.33%
+}
+
+.caption-own {
+  width:100%; 
+  font-family: 'Courier New', Courier, monospace;
+  font-size:16px;
+  text-align:center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, auto);
+  margin: 20px;
+}
+
+.grid-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+}
+
+.grid-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.grid-container-2 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, auto);
+  margin: 20px;
+}

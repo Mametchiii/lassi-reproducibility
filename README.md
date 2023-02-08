@@ -171,18 +171,18 @@ To test this image on a trained LASSI model, use the following commands
 ```bash
 (lassi) lassi $ cd src/pipelines
 # FairFace
-./fairface_pipelines.sh visualization --classify_attributes [your selected task] --perturb [your selected sensitive attribute] --adv_loss_weight 0.1 --random_attack_num_samples 10 --enc_sigma 0.325 --cls_sigmas "0.25" "$@"
+(lassi) lassi/src/pipelines $ ./fairface_pipelines.sh visualization --classify_attributes [your selected task] --perturb [your selected sensitive attribute] --adv_loss_weight 0.1 --random_attack_num_samples 10 --enc_sigma 0.325 --cls_sigmas "0.25" "$@"
 # CelebA
-./celeba_pipelins.sh visualization --classify_attributes [your selected task] --perturb [your selected sensitive attribute] --enc_sigma 0.65 --cls_sigmas "2.5" --adv_loss_weight 0.05 --random_attack_num_samples 10 --perform_endpoints_analysis False "$@"
+(lassi) lassi/src/pipelines $ ./celeba_pipelins.sh visualization --classify_attributes [your selected task] --perturb [your selected sensitive attribute] --enc_sigma 0.65 --cls_sigmas "2.5" --adv_loss_weight 0.05 --random_attack_num_samples 10 --perform_endpoints_analysis False "$@"
 ```
 
 Alternatively, to test this image on a trained Naive model, these two commands can be used:
 ```bash
 (lassi) lassi $ cd src/pipelines
 # FairFace
-./fairface_pipelines.sh visualization --classify_attributes [your selected task] --perturb [your selected sensitive attribute] --enc_sigma 0.325 --cls_sigmas "5" "$@"
+(lassi) lassi/src/pipelines $ ./fairface_pipelines.sh visualization --classify_attributes [your selected task] --perturb [your selected sensitive attribute] --enc_sigma 0.325 --cls_sigmas "5" "$@"
 # CelebA
-./celeba_pipelines.sh visualization --classify_attributes [your selected task] --perturb [your selected sensitive attribute] --enc_sigma 0.65 --cls_sigmas "10" --perform_endpoints_analysis False "$@"
+(lassi) lassi/src/pipelines $ ./celeba_pipelines.sh visualization --classify_attributes [your selected task] --perturb [your selected sensitive attribute] --enc_sigma 0.65 --cls_sigmas "10" --perform_endpoints_analysis False "$@"
 ```
 
 ## Generating Visualizations

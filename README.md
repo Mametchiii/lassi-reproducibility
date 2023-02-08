@@ -12,7 +12,7 @@ The project page of this study can be viewed [here](https://mametchiii.github.io
 
 Clone this repository:
 ```bash
-$ git clone https://github.com/Mametchiii/lassi-reproducibility
+$ git clone https://github.com/Mametchiii/lassi-reproducibility.git
 $ cd lassi
 ```
 

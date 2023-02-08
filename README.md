@@ -192,19 +192,6 @@ For example, if you want to see how GLOW model generates similar faces for the 1
 python explore_data.py --dataset celeba --perturb Pale_Skin --perturb_epsilon 1 --visualization_id 16,17 --nr_of_faces 5     
 ```
 
-## To cite the original paper
-
-```
-@inproceedings{peychev2022latent,
-    title={Latent Space Smoothing for Individually Fair Representations},
-    author={Momchil Peychev and Anian Ruoss and Mislav Balunovi{\'{c}} and Maximilian Baader and Martin Vechev},
-    booktitle={Computer Vision -- ECCV 2022},
-    year={2022},
-    pages={535--554},
-    organization={Springer}
-}
-```
-
 ## Contributors of this reproducibility study
 
 * _Contributors of this reproducibility study remain anonymous until after review_

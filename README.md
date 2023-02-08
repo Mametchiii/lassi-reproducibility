@@ -208,25 +208,3 @@ python explore_data.py --dataset celeba --perturb Pale_Skin --perturb_epsilon 1 
 ## Contributors of this reproducibility study
 
 * _Contributors of this reproducibility study remain anonymous until after review_
-
-## Contributors of the original paper
-
-* [Momchil Peychev](https://www.sri.inf.ethz.ch/people/momchil) (momchil.peychev@inf.ethz.ch)
-* Anian Ruoss (anianr@deepmind.com)
-* [Mislav Balunović](https://www.sri.inf.ethz.ch/people/mislav) (mislav.balunovic@inf.ethz.ch)
-* [Maximilian Baader](https://www.sri.inf.ethz.ch/people/max) (mbaader@inf.ethz.ch)
-* [Martin Vechev](https://www.sri.inf.ethz.ch/people/martin) (martin.vechev@inf.ethz.ch)
-
-## License and Copyright
-
-* Licensed under the [Apache-2.0 License](LICENSE)
-* Copyright (c) 2022 [Secure, Reliable, and Intelligent Systems Lab (SRI), ETH Zurich](https://www.sri.inf.ethz.ch)
-
-## Useful Resources
-
-* [glow-pytorch](https://github.com/rosinality/glow-pytorch), `MIT License, Copyright
-(c) 2018 Kim Seonghyeon` - used for pretraining the Glow models.
-* [center-smoothing](https://github.com/aounon/center-smoothing)
-by [Aounon Kumar](https://www.cs.umd.edu/~aounon/) - provides the basis for our center smoothing implementation.
-* [smoothing](https://github.com/locuslab/smoothing)
-by [Locus Lab](https://github.com/locuslab) - randomized smoothing implementation.

@@ -8,9 +8,6 @@ This repository contains the implementation of our reproducibility research. The
 
 The project page of this study can be viewed [here](https://mametchiii.github.io/lassi-reproducibility/).
 
-**Original text by Tsatsral:** This repository contains the (partial) implementation of the [ECCV 2022](https://www.sri.inf.ethz.ch/publications/peychev2022latent) paper,
-The original research is developed at the [SRI Lab, Department of Computer Science, ETH Zurich](https://www.sri.inf.ethz.ch) as a part of the [Safe AI project](http://safeai.ethz.ch). The majority of the code is imported from the official [Github](https://github.com/eth-sri/lassi) of this paper. The alternations by the authors of this reproducibility research are mainly done for generating the visualizations, testing the fairness score of the certain faces' prediction. The main body of the code is not editted, only small changed are done in how the class objects are defined etc. in various files to enable the above-mentioned calculations. To reproduce the results in our reproducibility report, please follow the instructions below. To reproduce the original paper, please go to the official [Github](https://github.com/eth-sri/lassi) page of the original paper.
-
 ## Environment Setup Instructions
 
 Clone this repository:

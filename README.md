@@ -198,4 +198,4 @@ python explore_data.py --dataset celeba --perturb Pale_Skin --perturb_epsilon 1 
 * Boaz Beukers
 * Denny Smit
 * Tsatsral Mendsuren
-* Didier Merk
+* [Didier Merk](https://www.linkedin.com/in/didier-merk/)

@@ -195,4 +195,7 @@ python explore_data.py --dataset celeba --perturb Pale_Skin --perturb_epsilon 1 
 
 ## Contributors of this reproducibility study
 
-* _Contributors of this reproducibility study remain anonymous until after review_
+* Boaz Beukers
+* Denny Smit
+* Tsatsral Mendsuren
+* Didier Merk
